@@ -1,0 +1,7 @@
+<resources>
+    <!-- Existing strings -->
+    <string name="app_name">WorkoutWise</string>
+    <string name="weather">Weather</string>
+    <string name="meals">Meals</string>
+    <string name="workouts">Workouts</string>
+</resources>
