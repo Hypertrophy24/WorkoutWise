@@ -2,12 +2,10 @@
 package com.example.workoutwise.ui.theme
 
 import androidx.lifecycle.ViewModel
-import com.example.workoutwise.data.DataProvider.workouts
+import com.example.workoutwise.data.DataProvider
 import com.example.workoutwise.model.Workout
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-
-
 
 class MainViewModel : ViewModel() {
     // Holds the current weather description (e.g., "Sunny", "Rainy")
@@ -22,8 +20,8 @@ class MainViewModel : ViewModel() {
     private val _suggestedWorkout = MutableStateFlow<Workout?>(null)
     val suggestedWorkout = _suggestedWorkout.asStateFlow()
 
-    // Define your workouts list
-
+    // Fetch workouts from the DataProvider
+    private val workouts = DataProvider.workouts
 
     // Function to update weather data and compute suggested workout
     fun updateWeather(description: String?, temp: Int?) {
@@ -36,22 +34,22 @@ class MainViewModel : ViewModel() {
     private fun computeSuggestedWorkout(description: String?, temp: Int?): Workout? {
         return when {
             description?.contains("Rain", ignoreCase = true) == true -> {
-                workouts.find { it.type == "Strength" } // Example: Suggest Strength training on rainy days
+                workouts.find { it.type.equals("Strength", ignoreCase = true) }
             }
             description?.contains("Snow", ignoreCase = true) == true -> {
-                workouts.find { it.type == "Flexibility" } // Example: Suggest Yoga or Pilates on snowy days
+                workouts.find { it.type.equals("Flexibility", ignoreCase = true) }
             }
             description?.contains("Sunny", ignoreCase = true) == true -> {
-                workouts.find { it.type == "Cardio" } // Example: Suggest Outdoor Run or HIIT Cardio on sunny days
+                workouts.find { it.type.equals("Cardio", ignoreCase = true) }
             }
             temp != null && temp < 10 -> {
-                workouts.find { it.type == "Flexibility" } // Suggest Flexibility workouts in cold temperatures
+                workouts.find { it.type.equals("Flexibility", ignoreCase = true) }
             }
             temp != null && temp > 30 -> {
-                workouts.find { it.type == "Cardio" } // Suggest Cardio workouts in hot temperatures
+                workouts.find { it.type.equals("Cardio", ignoreCase = true) }
             }
             else -> {
-                workouts.find { it.type == "Strength" } // Default suggestion
+                workouts.find { it.type.equals("Strength", ignoreCase = true) }
             }
         }
     }
