@@ -31,7 +31,8 @@ fun WorkoutsScreen(mainViewModel: MainViewModel) {
     ) {
         Text(
             text = "Suggested Workout",
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Spacer(modifier = Modifier.height(24.dp)) // Space between title and content
@@ -49,7 +50,8 @@ fun WorkoutsScreen(mainViewModel: MainViewModel) {
             // Inform the user to fetch weather data first
             Text(
                 text = "No workout suggestion available. Please fetch weather first.",
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
     }
@@ -63,6 +65,9 @@ fun WorkoutCard(workout: Workout, isExpanded: Boolean, onCardClick: () -> Unit) 
             .clickable { onCardClick() } // Make the card clickable
             .animateContentSize() // Animate size changes smoothly
             .padding(8.dp), // Padding around the card
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface // Use surface color
+        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp) // Card elevation
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -71,7 +76,8 @@ fun WorkoutCard(workout: Workout, isExpanded: Boolean, onCardClick: () -> Unit) 
             // Workout Name
             Text(
                 text = workout.name,
-                style = MaterialTheme.typography.headlineMedium
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Spacer(modifier = Modifier.height(8.dp)) // Space between texts
@@ -79,7 +85,8 @@ fun WorkoutCard(workout: Workout, isExpanded: Boolean, onCardClick: () -> Unit) 
             // Workout Type
             Text(
                 text = "Type: ${workout.type}",
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Spacer(modifier = Modifier.height(4.dp)) // Small space
@@ -87,7 +94,8 @@ fun WorkoutCard(workout: Workout, isExpanded: Boolean, onCardClick: () -> Unit) 
             // Workout Duration
             Text(
                 text = "Duration: ${workout.duration} minutes",
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Spacer(modifier = Modifier.height(4.dp)) // Small space
@@ -95,7 +103,8 @@ fun WorkoutCard(workout: Workout, isExpanded: Boolean, onCardClick: () -> Unit) 
             // Equipment Needed
             Text(
                 text = "Equipment Needed: ${workout.equipmentNeeded}",
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Spacer(modifier = Modifier.height(8.dp)) // Space before exercises
@@ -105,7 +114,8 @@ fun WorkoutCard(workout: Workout, isExpanded: Boolean, onCardClick: () -> Unit) 
                 Column(modifier = Modifier.padding(top = 8.dp)) {
                     Text(
                         text = "Exercises:",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(4.dp)) // Small space
 
@@ -132,6 +142,7 @@ fun ExerciseItem(exercise: Exercise) {
         Text(
             text = "•",
             style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(end = 8.dp) // Space between bullet and text
         )
 
@@ -139,20 +150,23 @@ fun ExerciseItem(exercise: Exercise) {
             // Exercise Name
             Text(
                 text = exercise.name,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
             // Optional: Display repetitions if available
             exercise.repetitions?.let { reps ->
                 Text(
                     text = reps,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
             // Optional: Display duration if available
             exercise.duration?.let { dur ->
                 Text(
                     text = dur,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }
