@@ -43,7 +43,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
                 WeatherScreen(mainViewModel)
             }
             composable(Screen.Meals.route) {
-                MealsScreen()
+                MealsScreen(mainViewModel)
             }
             composable(Screen.Workouts.route) {
                 WorkoutsScreen(mainViewModel)

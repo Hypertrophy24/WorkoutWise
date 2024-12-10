@@ -1,4 +1,4 @@
-package com.example.workoutwise.ui
+package com.example.workoutwise.ui.theme
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
