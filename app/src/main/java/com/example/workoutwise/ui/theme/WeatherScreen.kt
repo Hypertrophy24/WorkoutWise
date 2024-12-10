@@ -46,7 +46,7 @@ fun WeatherScreen(mainViewModel: MainViewModel) {
                     coroutineScope.launch {
                         try {
                             val response = RetrofitClient.apiService.getCurrentWeather(
-                                accessKey = "YourApiCode", // Replace with your actual API key
+                                accessKey = "YourWeatherAPI", // Replace with your actual API key
                                 query = locationQuery
                             )
 
